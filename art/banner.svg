@@ -1,0 +1,46 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="rectA" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4fd39a"/>
+      <stop offset="100%" stop-color="#42b883"/>
+    </linearGradient>
+    <linearGradient id="rectB" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff7a1f"/>
+      <stop offset="100%" stop-color="#ff6600"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="640" fill="#0f172a"/>
+  <rect width="1280" height="640" fill="url(#grid)"/>
+
+  <!-- text block -->
+  <text x="90" y="300" font-family="Manrope, Inter, -apple-system, sans-serif" font-size="88" font-weight="800" fill="#ffffff">VueForge</text>
+  <text x="92" y="350" font-family="Manrope, Inter, -apple-system, sans-serif" font-size="27" font-weight="500" fill="#94a3b8">Vue 3 widgets for October CMS</text>
+
+  <!-- accent underline -->
+  <rect x="92" y="372" width="64" height="5" rx="2.5" fill="#42b883"/>
+  <rect x="164" y="372" width="24" height="5" rx="2.5" fill="#ff6600"/>
+
+  <!-- component-tree illustration, right side -->
+  <g transform="translate(760,110)">
+    <!-- connecting lines (drawn first, behind the nodes) -->
+    <path d="M 210 90 L 90 40"  stroke="#334155" stroke-width="3" fill="none"/>
+    <path d="M 210 90 L 210 30" stroke="#334155" stroke-width="3" fill="none"/>
+    <path d="M 210 90 L 340 50" stroke="#334155" stroke-width="3" fill="none"/>
+    <path d="M 210 90 L 130 220" stroke="#334155" stroke-width="3" fill="none"/>
+    <path d="M 210 90 L 300 240" stroke="#334155" stroke-width="3" fill="none"/>
+
+    <!-- root node -->
+    <rect x="160" y="60" width="100" height="64" rx="16" fill="url(#rectA)"/>
+
+    <!-- child nodes -->
+    <rect x="30"  y="8"   width="90" height="56" rx="14" fill="url(#rectB)" opacity="0.95"/>
+    <rect x="170" y="-24" width="80" height="56" rx="14" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <rect x="300" y="14"  width="100" height="58" rx="14" fill="url(#rectA)" opacity="0.8"/>
+    <rect x="70"  y="196" width="100" height="58" rx="14" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <rect x="260" y="212" width="100" height="58" rx="14" fill="url(#rectB)" opacity="0.85"/>
+  </g>
+</svg>
