@@ -15,7 +15,7 @@ class Plugin extends PluginBase
             'description' => 'The rapid Vue 3 component & widget engine for October CMS backend interfaces.',
             'author' => 'Amjad Iqbal',
             'icon' => 'icon-cubes',
-            'homepage' => 'https://github.com/amjadiqbal/oc-vueforge',
+            'homepage' => 'https://github.com/amjadiqbal/oc-vueforge-plugin',
         ];
     }
 
