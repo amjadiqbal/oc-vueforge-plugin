@@ -165,18 +165,38 @@ noting that final graphics belong in `../design/`, one level above `src/`.
 
 ## Next steps (for the user, not doable in this session)
 
-1. **Create the GitHub repo** `amjadiqbal/oc-vueforge` and push this local
-   history (`git remote add origin ...` + `git push -u origin main`).
+1. ~~**Create the GitHub repo** `amjadiqbal/oc-vueforge` and push.~~ Done
+   2026-09-17 - public, MIT, `v0.1.0` tagged and released.
 2. **Real browser verification** (the one deferred item above): stand up a
    FormController in a real (or the throwaway) October app, log in, and
    confirm the widget round-trips through an actual HTTP save - not
    strictly required to publish, but the honest gap in this session's
    verification.
-3. **Resolve the Packagist composer.json-root issue** flagged in
-   `docs/MARKETPLACE_CHECKLIST.md` before submitting to Packagist.
+3. ~~**Resolve the Packagist composer.json-root issue**~~ Done 2026-09-18 -
+   see "Phase 8 addendum" below.
 4. **Produce the banner/icon/screenshots** per `docs/ASSET_PROMPTS.md`, into
    `../design/` (not this repo).
 5. **Register at octobercms.com** and submit per
    `docs/MARKETPLACE_CHECKLIST.md`.
 6. Decide the actual `v1.0.0` cutover point per `CHANGELOG.md`'s reasoning
    (after step 2, at minimum).
+
+## Phase 8 addendum - repo restructure (2026-09-18)
+
+Resolved the Packagist composer.json-root conflict flagged in Phase 8: the
+entire plugin (`Plugin.php`, `assets/`, `classes/`, `console/`,
+`formwidgets/`, `tests/`, `composer.json`, `package.json`, etc.) was moved
+from `plugins/amjadiqbal/vueforge/*` up to the repository root, matching how
+official October plugins actually ship on Packagist (a plugin's GitHub repo
+root *is* the plugin - `composer/installers`' `october-plugin` type derives
+the install path `plugins/<vendor>/<name>/` from the package's Composer
+`name`, not from any nested folder in the source repo, so no
+`installer-name`/path mapping was needed). Updated to match: `.gitignore`
+(`assets/dist/` path), `.github/workflows/tests.yml` (working directories,
+the rsync step that installs this plugin into the CI throwaway app), and
+`README.md`'s Installation section. Internal references to
+`plugins/amjadiqbal/vueforge/...` inside PHP docblocks, `vite.config.ts`'s
+`base` URL, and `MakeVueWidget.php`'s generated-file comments were
+deliberately left unchanged - those describe the plugin's *installed*
+location inside a consuming October app, which is unaffected by this repo's
+own source layout.

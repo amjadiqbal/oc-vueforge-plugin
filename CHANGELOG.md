@@ -4,6 +4,24 @@ All notable changes to this project are documented in this file. The format
 is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 this project uses [Semantic Versioning](https://semver.org/).
 
+## [0.1.1] - 2026-09-18
+
+### Changed
+
+- **Restructured the repository so the plugin sits at the repo root**,
+  resolving the Packagist composer.json-root conflict flagged in `0.1.0`.
+  `Plugin.php`, `assets/`, `classes/`, `console/`, `formwidgets/`, `tests/`,
+  `composer.json`, `package.json`, etc. moved out of
+  `plugins/amjadiqbal/vueforge/` up to the repo root, matching how official
+  October plugins ship on Packagist (a plugin's repo root *is* the plugin).
+  No functional/runtime code changed - `.gitignore`, CI, and the README's
+  Installation section were updated to match. See `PROJECT_PROGRESS.md`'s
+  "Phase 8 addendum" for the full reasoning.
+
+Still `0.x`, not `1.0.0`, for the same reason as `0.1.0` below: no real
+browser HTTP login/save round-trip has been verified yet, and this hasn't
+been published to Packagist or the October Marketplace.
+
 ## [0.1.0] - 2026-09-17
 
 Initial build. Versioned `0.1.0` rather than `1.0.0` deliberately: this
