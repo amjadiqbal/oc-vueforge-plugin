@@ -4,7 +4,28 @@ All notable changes to this project are documented in this file. The format
 is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 this project uses [Semantic Versioning](https://semver.org/).
 
-## [0.1.5] - 2026-09-18
+## [0.1.6] - 2026-09-18
+
+### Fixed
+
+- **October CMS Marketplace rejected the registered plugin code**:
+  *"Supplied plugin code 'AmjadIqbal' does not match author code of
+  'Amjad'"*. The Marketplace author code (assigned at registration, "cannot
+  be changed after you register" per October's own docs) turned out to be
+  `Amjad`, not `AmjadIqbal` as this plugin's namespace assumed throughout.
+  Renamed the plugin's namespace root from `AmjadIqbal\VueForge` to
+  `Amjad\VueForge` everywhere: `Plugin.php`, `classes/ViteResolver.php`,
+  `formwidgets/VueWidget.php`, `console/MakeVueWidget.php`,
+  `tests/VueWidgetTest.php`, `composer.json` (package name
+  `amjadiqbal/vueforge-plugin` → `amjad/vueforge-plugin`, PSR-4 autoload
+  key), install-path strings in `vite.config.ts` and
+  `.github/workflows/tests.yml`, and `README.md`. The plugin now installs
+  at `plugins/amjad/vueforge` (was `plugins/amjadiqbal/vueforge`).
+  **The GitHub org/username (`amjadiqbal`) and the display author name
+  ("Amjad Iqbal" in `pluginDetails()`) are unaffected** - only the
+  Marketplace's own internal author-code namespace changed, which is a
+  separate concept from either of those. Verified locally (typecheck, test,
+  build all pass) before pushing.
 
 ### Changed
 

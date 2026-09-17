@@ -46,10 +46,10 @@ jobs:
 
       - name: Install this plugin into the throwaway app
         run: |
-          mkdir -p octoberapp/plugins/amjadiqbal
+          mkdir -p octoberapp/plugins/amjad
           rsync -a --exclude=node_modules --exclude=assets/dist --exclude=.git \
             oc-vueforge/ \
-            octoberapp/plugins/amjadiqbal/vueforge/
+            octoberapp/plugins/amjad/vueforge/
 
       - name: Configure SQLite
         working-directory: octoberapp
@@ -71,7 +71,7 @@ jobs:
           <phpunit bootstrap="modules/system/tests/bootstrap.php" colors="true">
               <testsuites>
                   <testsuite name="VueForge">
-                      <directory>./plugins/amjadiqbal/vueforge/tests</directory>
+                      <directory>./plugins/amjad/vueforge/tests</directory>
                   </testsuite>
               </testsuites>
               <php>

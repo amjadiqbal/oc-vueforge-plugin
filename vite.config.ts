@@ -7,7 +7,7 @@ import { resolve } from 'node:path';
 // import each one by its own manifest key instead of shipping one giant bundle.
 export default defineConfig({
     plugins: [vue()],
-    base: '/plugins/amjadiqbal/vueforge/assets/dist/',
+    base: '/plugins/amjad/vueforge/assets/dist/',
     build: {
         manifest: true,
         outDir: 'assets/dist',

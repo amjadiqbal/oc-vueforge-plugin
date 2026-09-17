@@ -7,7 +7,7 @@
 <p align="center">
   <a href="https://github.com/amjadiqbal/oc-vueforge-plugin/actions/workflows/tests.yml"><img src="https://github.com/amjadiqbal/oc-vueforge-plugin/actions/workflows/tests.yml/badge.svg" alt="Tests"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-0.1.4-informational.svg" alt="Version 0.1.4"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-0.1.6-informational.svg" alt="Version 0.1.6"></a>
 </p>
 
 The rapid Vue 3 component & widget engine for October CMS backend interfaces.
@@ -28,12 +28,12 @@ differ and when to use which.
 
 ## Quickstart
 
-1. Install the plugin into `plugins/amjadiqbal/vueforge` (see the Installation
+1. Install the plugin into `plugins/amjad/vueforge` (see the Installation
    section below).
 2. Build its frontend assets once:
 
    ```bash
-   cd plugins/amjadiqbal/vueforge
+   cd plugins/amjad/vueforge
    npm install
    npm run build
    ```
@@ -128,17 +128,20 @@ default) - see `docs/VUE3_MIGRATION_GUIDE.md`.
 
 ## Installation
 
-Composer package: `amjadiqbal/vueforge-plugin` (the `-plugin` suffix is an
-October CMS Marketplace naming requirement - see the
-[Developer Guide](https://octobercms.com/help/guidelines/developer) and
-[Publishing Packages](https://docs.octobercms.com/4.x/extend/resources/publishing-packages.html)
-docs). Once published:
+Composer package: `amjad/vueforge-plugin`. The vendor segment is `amjad`,
+not the GitHub username `amjadiqbal` - it must match the registered October
+CMS Marketplace author code exactly (confirmed by a real rejected
+submission: *"Supplied plugin code 'AmjadIqbal' does not match author code
+of 'Amjad'"*). The `-plugin` suffix is a separate, also-required naming rule
+- see the [Developer Guide](https://octobercms.com/help/guidelines/developer)
+and [Publishing Packages](https://docs.octobercms.com/4.x/extend/resources/publishing-packages.html)
+docs. Once published:
 
 ```bash
-composer require amjadiqbal/vueforge-plugin
+composer require amjad/vueforge-plugin
 ```
 
-`composer/installers` places it at `plugins/amjadiqbal/vueforge` in your
+`composer/installers` places it at `plugins/amjad/vueforge` in your
 October application automatically - this repository's root **is** the
 plugin (matching how RainLab and other October plugins ship on Packagist),
 so no extra nesting or copying is needed.
@@ -146,9 +149,9 @@ so no extra nesting or copying is needed.
 Until it's published, install manually:
 
 1. Clone this repository directly into your October CMS application's
-   `plugins/amjadiqbal/vueforge` directory (i.e. this repo's root becomes
+   `plugins/amjad/vueforge` directory (i.e. this repo's root becomes
    that directory - do not nest it any further).
-2. `cd plugins/amjadiqbal/vueforge && npm install && npm run build`.
+2. `cd plugins/amjad/vueforge && npm install && npm run build`.
 3. `php artisan october:migrate` (no migrations ship with this plugin, but
    this refreshes the plugin registry so the widget/console command appear).
 
