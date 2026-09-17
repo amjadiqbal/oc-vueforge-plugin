@@ -10,7 +10,7 @@ import { defineComponent, h } from 'vue';
  * requirement that a full browser session would otherwise verify. These run
  * under jsdom via Vitest + @vue/test-utils, which is the pragmatic
  * equivalent when a real backend login flow isn't available in this
- * environment (see PROJECT_PROGRESS.md for what was verified where).
+ * environment.
  */
 
 function makeHiddenInput(fieldName: string): HTMLInputElement {
