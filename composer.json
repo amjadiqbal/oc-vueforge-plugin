@@ -1,5 +1,5 @@
 {
-    "name": "amjadiqbal/vueforge",
+    "name": "amjadiqbal/vueforge-plugin",
     "type": "october-plugin",
     "description": "The rapid Vue 3 component & widget engine for October CMS backend interfaces.",
     "keywords": ["october cms", "vue", "vue3", "form widget", "backend"],
@@ -12,7 +12,8 @@
     ],
     "require": {
         "php": ">=8.2",
-        "composer/installers": "^1.0 || ^2.0"
+        "composer/installers": "^1.0 || ^2.0",
+        "october/rain": ">=4.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^10.0 || ^11.0"

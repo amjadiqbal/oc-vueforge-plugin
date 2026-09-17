@@ -7,7 +7,7 @@
 <p align="center">
   <a href="https://github.com/amjadiqbal/oc-vueforge/actions/workflows/tests.yml"><img src="https://github.com/amjadiqbal/oc-vueforge/actions/workflows/tests.yml/badge.svg" alt="Tests"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-0.1.3-informational.svg" alt="Version 0.1.3"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-0.1.4-informational.svg" alt="Version 0.1.4"></a>
 </p>
 
 The rapid Vue 3 component & widget engine for October CMS backend interfaces.
@@ -128,10 +128,14 @@ default) - see `docs/VUE3_MIGRATION_GUIDE.md`.
 
 ## Installation
 
-Composer package: `amjadiqbal/vueforge`. Once published:
+Composer package: `amjadiqbal/vueforge-plugin` (the `-plugin` suffix is an
+October CMS Marketplace naming requirement - see the
+[Developer Guide](https://octobercms.com/help/guidelines/developer) and
+[Publishing Packages](https://docs.octobercms.com/4.x/extend/resources/publishing-packages.html)
+docs). Once published:
 
 ```bash
-composer require amjadiqbal/vueforge
+composer require amjadiqbal/vueforge-plugin
 ```
 
 `composer/installers` places it at `plugins/amjadiqbal/vueforge` in your
