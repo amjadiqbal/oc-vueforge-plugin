@@ -2,3 +2,4 @@
 0.1.1: Restructured the repository so the plugin sits at the repo root (Packagist packaging fix, no functional changes).
 0.1.2: Added README banner, icon, and CI/license/version badges.
 0.1.3: Fixed CI (jsdom 30 required Node 22+, downgraded to jsdom 25); removed internal process files from the repo.
+0.1.4: Fixed composer.json package name for October CMS Marketplace compliance (must end in -plugin); added october/rain version requirement.

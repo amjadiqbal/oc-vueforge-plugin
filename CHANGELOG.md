@@ -4,6 +4,37 @@ All notable changes to this project are documented in this file. The format
 is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 this project uses [Semantic Versioning](https://semver.org/).
 
+## [0.1.4] - 2026-09-18
+
+### Fixed
+
+- **Composer package name was rejected by the October CMS Marketplace**:
+  `amjadiqbal/vueforge` → the submission form returned "expected value is
+  `amjadiqbal/vueforge-plugin`". Confirmed against October CMS's own
+  Publishing Packages docs: the package name **must** end in `-plugin`.
+  Fixed in `composer.json`. The installed directory name is unaffected -
+  `extra.installer-name` was already correctly set to `vueforge`, so the
+  plugin still installs at `plugins/amjadiqbal/vueforge` regardless of the
+  Composer package name.
+- Added `"october/rain": ">=4.2"` to `composer.json`'s `require` - the
+  documented minimum platform version was stated in the README but never
+  actually enforced at the Composer level.
+
+### Changed
+
+- Regenerated the marketplace banner and icon at the **actual required
+  dimensions**, confirmed from October CMS's Quality Guidelines
+  (previously guessed and wrong): icon 64x64 transparent PNG (was a 512x512
+  SVG), banner 837x348 PNG (was 1280x640 SVG, and re-composed rather than
+  stretched to avoid distorting the aspect ratio). New files:
+  `../../design/vueforge-icon-64.png`, `../../design/vueforge-banner-837x348.png`.
+- Rewrote `listing/MARKETPLACE_CHECKLIST.md` and `../../design/ASSET_PROMPTS.md`
+  against the real, verified October CMS documentation (Developer Guide,
+  Publishing Packages, Quality Guidelines) rather than assumptions -
+  package/repo naming rules, exact asset dimensions, screenshot composition
+  rules, and description-field content rules (no HTML, Content vs
+  Documentation field split).
+
 ## [0.1.3] - 2026-09-18
 
 ### Fixed
