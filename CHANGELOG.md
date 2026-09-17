@@ -4,6 +4,25 @@ All notable changes to this project are documented in this file. The format
 is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 this project uses [Semantic Versioning](https://semver.org/).
 
+## [0.1.3] - 2026-09-18
+
+### Fixed
+
+- **CI was failing on `npm test`** (`TypeError: webidl.util.markAsUncloneable is not a function`).
+  Root cause: `jsdom@30` requires Node `^22.22.2 || ^24.15.0 || >=26.0.0`, but this project targets
+  Node 18+ (its own stated requirement) and CI runs Node 20 - jsdom 30 simply doesn't run there.
+  Downgraded `jsdom` to `^25.0.0` (supports Node >=18, matching the stated requirement) rather than
+  raising the Node requirement for everyone installing this plugin. Verified locally: typecheck,
+  test, and build all pass.
+
+### Changed
+
+- **Removed internal process/tracking files from the repository** - `PROJECT_PROGRESS.md`,
+  `docs/MARKETPLACE_CHECKLIST.md`, and `docs/ASSET_PROMPTS.md` were build logs and internal
+  checklists, not documentation of how to use the plugin, and don't belong in a public repo.
+  Moved to this product's local workspace folders (outside `src/`, not published) instead.
+  `docs/VUE3_MIGRATION_GUIDE.md` stays - it's genuine usage documentation.
+
 ## [0.1.2] - 2026-09-18
 
 ### Added
@@ -23,8 +42,7 @@ this project uses [Semantic Versioning](https://semver.org/).
   `plugins/amjadiqbal/vueforge/` up to the repo root, matching how official
   October plugins ship on Packagist (a plugin's repo root *is* the plugin).
   No functional/runtime code changed - `.gitignore`, CI, and the README's
-  Installation section were updated to match. See `PROJECT_PROGRESS.md`'s
-  "Phase 8 addendum" for the full reasoning.
+  Installation section were updated to match.
 
 Still `0.x`, not `1.0.0`, for the same reason as `0.1.0` below: no real
 browser HTTP login/save round-trip has been verified yet, and this hasn't
