@@ -2,10 +2,8 @@
 node_modules/
 vendor/
 
-# Vite build output - see plugins/amjadiqbal/vueforge/README.md
-# ("Why assets/dist/ is not committed") for the reasoning.
-plugins/amjadiqbal/vueforge/assets/dist/
-plugins/*/*/assets/dist/
+# Vite build output - see README.md ("Why assets/dist/ is not committed") for the reasoning.
+assets/dist/
 
 # Vite caches
 .vite/

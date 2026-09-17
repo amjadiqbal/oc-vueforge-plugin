@@ -8,17 +8,16 @@ verified.
 
 ## Before submission
 
-- [ ] **Packagist composer.json location.** This repo's `composer.json` lives
-      at `plugins/amjadiqbal/vueforge/composer.json`, matching how the plugin
-      drops into an October installation - but Packagist expects
-      `composer.json` at the **git repository root**. Resolve this before
-      submitting to Packagist: either (a) restructure so `composer.json`
-      (and ideally the whole package) sits at the repo root with a
-      `installer-name`/path mapping for October's `plugins/amjadiqbal/vueforge`
-      expectation, or (b) submit via a subtree-split / separate
-      Packagist-only branch that promotes `plugins/amjadiqbal/vueforge/*` to
-      the root. Check how other October CMS Marketplace plugins on Packagist
-      solve this before picking an approach.
+- [x] **Packagist composer.json location - resolved 2026-09-18.** The repo
+      was restructured so `composer.json` (and the entire plugin) sits at the
+      **git repository root** - matching how official plugins actually ship
+      on Packagist (e.g. `rainlab/blog-plugin`'s repo root *is* the plugin;
+      `composer/installers`' `october-plugin` type derives the install path
+      `plugins/<vendor>/<name>/` from the package's Composer `name`, not from
+      any nested folder in the source repo). No `installer-name`/path mapping
+      or subtree-split was needed - the previous `plugins/amjadiqbal/vueforge/`
+      nesting was removed and its contents promoted to the repo root. All
+      other docs/tests/CI paths were updated to match; see `CHANGELOG.md`.
 - [ ] `composer.json` `name` (`amjadiqbal/vueforge`), `type`
       (`october-plugin`), and `require.php` (`>=8.2`) are correct - done.
 - [ ] `npm run build` succeeds and `assets/dist/` is producible from a clean

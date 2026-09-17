@@ -1,0 +1,2 @@
+0.1.0: First version of VueForge.
+0.1.1: Restructured the repository so the plugin sits at the repo root (Packagist packaging fix, no functional changes).
