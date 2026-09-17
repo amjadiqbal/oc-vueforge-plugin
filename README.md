@@ -1,4 +1,14 @@
-# VueForge for October CMS
+<p align="center">
+  <img src="art/banner.svg" alt="VueForge - the rapid Vue 3 component & widget engine for October CMS" width="100%">
+</p>
+
+<h1 align="center"><img src="art/icon.svg" width="28" height="28" valign="middle" alt=""> VueForge for October CMS</h1>
+
+<p align="center">
+  <a href="https://github.com/amjadiqbal/oc-vueforge/actions/workflows/tests.yml"><img src="https://github.com/amjadiqbal/oc-vueforge/actions/workflows/tests.yml/badge.svg" alt="Tests"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-0.1.2-informational.svg" alt="Version 0.1.2"></a>
+</p>
 
 The rapid Vue 3 component & widget engine for October CMS backend interfaces.
 
