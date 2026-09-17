@@ -5,7 +5,7 @@
 <h1 align="center"><img src="art/icon.svg" width="28" height="28" valign="middle" alt=""> VueForge for October CMS</h1>
 
 <p align="center">
-  <a href="https://github.com/amjadiqbal/oc-vueforge/actions/workflows/tests.yml"><img src="https://github.com/amjadiqbal/oc-vueforge/actions/workflows/tests.yml/badge.svg" alt="Tests"></a>
+  <a href="https://github.com/amjadiqbal/oc-vueforge-plugin/actions/workflows/tests.yml"><img src="https://github.com/amjadiqbal/oc-vueforge-plugin/actions/workflows/tests.yml/badge.svg" alt="Tests"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
   <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-0.1.4-informational.svg" alt="Version 0.1.4"></a>
 </p>
