@@ -4,6 +4,22 @@ All notable changes to this project are documented in this file. The format
 is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 this project uses [Semantic Versioning](https://semver.org/).
 
+## [0.1.5] - 2026-09-18
+
+### Changed
+
+- Renamed the GitHub repo from `oc-vueforge` to `oc-vueforge-plugin`,
+  matching October CMS's Developer Guide repository-naming convention
+  ("Repository Naming": plugins should use a `-plugin` suffix with an
+  optional `oc-` prefix). Confirmed against 6 real live plugins via the
+  Packagist API (`rainlab/blog-plugin`, `rainlab/builder-plugin`,
+  `offline/oc-mall-plugin`, `offline/oc-site-search-plugin`,
+  `offline/oc-gdpr-plugin`, `initbiz/seostorm-plugin`) - every one has its
+  GitHub repo name exactly matching its Composer package name, no
+  exceptions found. Updated `Plugin.php`'s `homepage` and `README.md`'s CI
+  badge links to match. GitHub auto-redirects the old URL; the Packagist
+  webhook survived the rename intact (confirmed via the GitHub API).
+
 ## [0.1.4] - 2026-09-18
 
 ### Fixed
