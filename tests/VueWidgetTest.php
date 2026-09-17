@@ -1,6 +1,6 @@
 <?php
 
-use AmjadIqbal\VueForge\FormWidgets\VueWidget;
+use Amjad\VueForge\FormWidgets\VueWidget;
 use Backend\Classes\FormField;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * which is unrelated to what VueWidget itself is responsible for.
  *
  * Run from an October CMS application root that has this plugin installed
- * under plugins/amjadiqbal/vueforge, e.g.:
+ * under plugins/amjad/vueforge, e.g.:
  *
  *     vendor/bin/phpunit -c phpunit.xml --testsuite "VueForge"
  */

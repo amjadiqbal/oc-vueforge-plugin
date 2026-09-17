@@ -1,8 +1,8 @@
 <?php
 
-namespace AmjadIqbal\VueForge\FormWidgets;
+namespace Amjad\VueForge\FormWidgets;
 
-use AmjadIqbal\VueForge\Classes\ViteResolver;
+use Amjad\VueForge\Classes\ViteResolver;
 use Backend\Classes\FormWidgetBase;
 
 /**

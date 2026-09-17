@@ -4,3 +4,4 @@
 0.1.3: Fixed CI (jsdom 30 required Node 22+, downgraded to jsdom 25); removed internal process files from the repo.
 0.1.4: Fixed composer.json package name for October CMS Marketplace compliance (must end in -plugin); added october/rain version requirement.
 0.1.5: Renamed the GitHub repo to oc-vueforge-plugin, matching October CMS's repository naming convention.
+0.1.6: Renamed the plugin namespace from AmjadIqbal to Amjad to match the registered October CMS Marketplace author code (composer package amjad/vueforge-plugin, installs at plugins/amjad/vueforge).
