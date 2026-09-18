@@ -7,7 +7,7 @@
 <p align="center">
   <a href="https://github.com/amjadiqbal/oc-vueforge-plugin/actions/workflows/tests.yml"><img src="https://github.com/amjadiqbal/oc-vueforge-plugin/actions/workflows/tests.yml/badge.svg" alt="Tests"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-0.1.6-informational.svg" alt="Version 0.1.6"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-0.1.7-informational.svg" alt="Version 0.1.7"></a>
 </p>
 
 The rapid Vue 3 component & widget engine for October CMS backend interfaces.
@@ -128,25 +128,24 @@ default) - see `docs/VUE3_MIGRATION_GUIDE.md`.
 
 ## Installation
 
-Composer package: `amjad/vueforge-plugin`. The vendor segment is `amjad`,
-not the GitHub username `amjadiqbal` - it must match the registered October
-CMS Marketplace author code exactly (confirmed by a real rejected
-submission: *"Supplied plugin code 'AmjadIqbal' does not match author code
-of 'Amjad'"*). The `-plugin` suffix is a separate, also-required naming rule
-- see the [Developer Guide](https://octobercms.com/help/guidelines/developer)
-and [Publishing Packages](https://docs.octobercms.com/4.x/extend/resources/publishing-packages.html)
-docs. Once published:
+Plugin code: `Amjad.VueForge` (matches the registered October CMS Marketplace
+author code exactly - confirmed by a real rejected submission: *"Supplied
+plugin code 'AmjadIqbal' does not match author code of 'Amjad'"*).
 
+**Not published to Packagist.org** - the `amjad` vendor there is already
+taken by an unrelated package, and publishing under a different vendor would
+install this plugin at the wrong directory (`composer/installers` derives
+the install path only from the Composer package's own vendor prefix, with
+no override) and silently fail to load, since October's plugin loader then
+looks for a class that wouldn't exist at that path. This doesn't affect
+distribution through October CMS itself:
+
+**Via the October Marketplace** (once the listing is live):
 ```bash
-composer require amjad/vueforge-plugin
+php artisan plugin:install Amjad.VueForge
 ```
 
-`composer/installers` places it at `plugins/amjad/vueforge` in your
-October application automatically - this repository's root **is** the
-plugin (matching how RainLab and other October plugins ship on Packagist),
-so no extra nesting or copying is needed.
-
-Until it's published, install manually:
+**Manual install** (works today, no Marketplace approval needed):
 
 1. Clone this repository directly into your October CMS application's
    `plugins/amjad/vueforge` directory (i.e. this repo's root becomes
@@ -154,6 +153,11 @@ Until it's published, install manually:
 2. `cd plugins/amjad/vueforge && npm install && npm run build`.
 3. `php artisan october:migrate` (no migrations ship with this plugin, but
    this refreshes the plugin registry so the widget/console command appear).
+
+`composer.json`'s package name (`amjad/vueforge-plugin`) is retained for
+October's own internal package metadata but is not registered on public
+Packagist.org - see `CHANGELOG.md` (0.1.7) for the full reasoning if you're
+wondering why `composer require` isn't listed as an install method here.
 
 ## Testing
 

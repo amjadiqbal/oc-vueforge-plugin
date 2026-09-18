@@ -4,6 +4,33 @@ All notable changes to this project are documented in this file. The format
 is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 this project uses [Semantic Versioning](https://semver.org/).
 
+## [0.1.7] - 2026-09-18
+
+### Changed
+
+- **Packagist.org publication abandoned - not a bug fix, a corrected decision.** A real submission
+  attempt for `amjad/vueforge-plugin` was rejected by Packagist: *"The vendor name 'amjad' was
+  already claimed by someone else"* (an unrelated existing package, `amjad/lableb`). Verified
+  against real source before assuming a rename would fix it the way the 0.1.6 author-code fix did:
+  - October's Marketplace distribution doesn't depend on Packagist.org at all - a real live listing
+    (`octobercms.com/plugin/rainlab-blog`) shows `php artisan plugin:install RainLab.Blog` as the
+    actual install command, driven by the registered Plugin Code through October's own gateway.
+  - Publishing under a *different*, available Packagist vendor (e.g. `amjadiqbal`) would have
+    silently broken the plugin for anyone using plain `composer require` - confirmed via
+    `composer/installers`' real source (`BaseInstaller::getInstallPath()`): the install-path vendor
+    segment is derived only from the Composer package's own vendor prefix, with no override.
+    October's `PluginManager::loadPlugin()` then requires a class matching that exact scanned
+    directory path to exist - a `composer require amjadiqbal/vueforge-plugin` install would land at
+    `plugins/amjadiqbal/vueforge` looking for class `amjadiqbal\vueforge\Plugin`, which doesn't
+    exist (the real class is `Amjad\VueForge\Plugin`) - the plugin would simply never register, no
+    error shown.
+  - `composer.json`'s `name` field stays `amjad/vueforge-plugin` (matches what's already registered
+    on the October Marketplace submission itself, which is independent of public Packagist.org) -
+    only the *public Packagist.org* publication step is skipped, not the Composer package identity.
+  - `README.md`'s Installation section rewritten to lead with `php artisan plugin:install
+    Amjad.VueForge` (the real primary distribution method) and the existing manual-clone
+    instructions, removing the `composer require` instructions that would have been actively wrong.
+
 ## [0.1.6] - 2026-09-18
 
 ### Fixed
