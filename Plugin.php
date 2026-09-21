@@ -1,10 +1,10 @@
 <?php
 
-namespace Amjad\VueForge;
+namespace AmjadIqbal\VueForge;
 
 use System\Classes\PluginBase;
-use Amjad\VueForge\FormWidgets\VueWidget;
-use Amjad\VueForge\Console\MakeVueWidget;
+use AmjadIqbal\VueForge\FormWidgets\VueWidget;
+use AmjadIqbal\VueForge\Console\MakeVueWidget;
 
 class Plugin extends PluginBase
 {

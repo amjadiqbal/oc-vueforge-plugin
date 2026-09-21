@@ -1,6 +1,6 @@
 <?php
 
-namespace Amjad\VueForge\Classes;
+namespace AmjadIqbal\VueForge\Classes;
 
 use Backend\Classes\FormWidgetBase;
 use RuntimeException;
@@ -76,7 +76,7 @@ class ViteResolver
             ));
         }
 
-        $baseUrl = '/plugins/amjad/vueforge/' . $this->buildDir . '/';
+        $baseUrl = '/plugins/amjadiqbal/vueforge/' . $this->buildDir . '/';
 
         $widget->addJs($baseUrl . $chunk['file'], ['type' => 'module']);
 
@@ -98,7 +98,7 @@ class ViteResolver
             return $this->manifestCache;
         }
 
-        $path = plugins_path('amjad/vueforge/' . $this->manifestPath);
+        $path = plugins_path('amjadiqbal/vueforge/' . $this->manifestPath);
 
         if (!file_exists($path)) {
             throw new RuntimeException(sprintf(

@@ -4,6 +4,48 @@ All notable changes to this project are documented in this file. The format
 is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 this project uses [Semantic Versioning](https://semver.org/).
 
+## [0.1.8] - 2026-09-22
+
+### Changed
+
+- **Reverted to the `amjadiqbal` identity, superseding both 0.1.6 and 0.1.7 - decided explicitly
+  by Amjad, not inferred.** The `0.1.6` rename to `Amjad`/`amjad` made this plugin eligible for an
+  October CMS Marketplace listing under this account's registered author code, at the cost of a
+  Composer/GitHub identity inconsistent with every other package from this author - and `0.1.7`
+  then found that identity also collides with an unrelated, pre-existing `amjad/lableb` package on
+  Packagist.org. Amjad's decision: give up Marketplace eligibility under this account and revert
+  fully to `amjadiqbal` (namespace, plugin code, Composer vendor, install path), matching
+  BlockCraft's own 2026-09-18 decision and restoring a working, unblocked Packagist publication
+  path.
+  - Namespace: `Amjad\VueForge` → `AmjadIqbal\VueForge`.
+  - Plugin code: `Amjad.VueForge` → `AmjadIqbal.VueForge`.
+  - Composer package: `amjad/vueforge-plugin` → `amjadiqbal/vueforge-plugin`, PSR-4 autoload key
+    updated to match.
+  - Install path: `plugins/amjad/vueforge` → `plugins/amjadiqbal/vueforge` - updated in
+    `classes/ViteResolver.php`'s hardcoded manifest/base-URL strings, `vite.config.ts`'s `base`,
+    `.github/workflows/tests.yml`'s install/testsuite paths, and `console/MakeVueWidget.php`'s
+    generated-file comments.
+  - `README.md`'s Installation section rewritten again: `composer require amjadiqbal/vueforge-plugin`
+    is the real, correct primary method again (no vendor conflict on Packagist under `amjadiqbal`),
+    with the explicit tradeoff (no Marketplace listing under this account) stated plainly rather
+    than left implicit.
+  - **The bug this fixes was reproduced for real before this change**, not just reasoned about: the
+    live Packagist package `amjadiqbal/vueforge-plugin` v0.1.6 was already serving a `composer.json`
+    declaring `"name": "amjad/vueforge-plugin"` with `Plugin.php` declaring
+    `namespace Amjad\VueForge` - a real, live, already-shipped identity mismatch. Copying the real
+    `Amjad\VueForge` plugin code into a directory matching what that published package name would
+    actually install to (`plugins/amjadiqbal/vueforge`) and running `php artisan plugin:list`
+    against this channel's real disposable October CMS install confirmed the plugin silently does
+    not register - no error, just absent from the list. Re-verified clean after this fix.
+  - **The pending October CMS Marketplace submission** (submitted 2026-09-18 under `Amjad.VueForge`,
+    still showing no public listing as of 2026-09-22 per a content-based check, not a status code -
+    `octobercms.com/plugin/<slug>` returns HTTP 200 for every slug including nonexistent ones) is
+    **not touched by this change** and needs Amjad's own decision (withdraw it from his Author page,
+    or let it be rejected/lapse on its own) - not something any session can or should decide.
+  - `0.1.7`'s CHANGELOG entry above is kept as accurate history of what was decided that day; it was
+    never tagged or released (`git tag` shows nothing past `v0.1.6`), so `0.1.7` is being reused
+    here as a real version bump to `0.1.8` rather than retroactively edited.
+
 ## [0.1.7] - 2026-09-18
 
 ### Changed
