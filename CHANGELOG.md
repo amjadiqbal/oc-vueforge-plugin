@@ -9,8 +9,14 @@ Amjad-approved, to normalize every commit's author/committer to the single canon
 `Amjad Iqbal <36040604+amjadiqbal@users.noreply.github.com>` (previously a mix of
 `amjad1503d@aptechgdn.net`, `hi@amjad.com.pk`, and a stray build-session address). Commit content
 is unchanged - only metadata. Every tag (`v0.1.0`-`v0.1.9`) was recreated pointing at the
-re-authored commits. Any existing clone of this repo predating 2026-09-22 is now diverged and
-should be re-cloned, not pulled.**
+re-authored commits. A first pass stripped the SSH signatures 7 of the original 13 commits carried
+(re-authoring changes signed content, invalidating the old signature); a second pass the same day
+re-signed every commit with the same SSH key - all 14 commits are now genuinely signed again,
+verified locally against the real public key. GitHub itself still shows these as unverified
+("unknown_key") because that SSH key isn't registered as a signing key on the GitHub account -
+an account-settings step only Amjad can do, unrelated to the commit content or this rewrite. Any
+existing clone of this repo predating 2026-09-22 is now diverged and should be re-cloned, not
+pulled.**
 
 ## [0.1.9] - 2026-09-22
 
