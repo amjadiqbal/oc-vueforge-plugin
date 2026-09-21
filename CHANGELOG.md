@@ -4,6 +4,14 @@ All notable changes to this project are documented in this file. The format
 is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 this project uses [Semantic Versioning](https://semver.org/).
 
+**Note, 2026-09-22: this repo's git history was rewritten and force-pushed the same day,
+Amjad-approved, to normalize every commit's author/committer to the single canonical identity
+`Amjad Iqbal <36040604+amjadiqbal@users.noreply.github.com>` (previously a mix of
+`amjad1503d@aptechgdn.net`, `hi@amjad.com.pk`, and a stray build-session address). Commit content
+is unchanged - only metadata. Every tag (`v0.1.0`-`v0.1.9`) was recreated pointing at the
+re-authored commits. Any existing clone of this repo predating 2026-09-22 is now diverged and
+should be re-cloned, not pulled.**
+
 ## [0.1.9] - 2026-09-22
 
 ### Added
