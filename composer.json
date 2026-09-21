@@ -1,5 +1,5 @@
 {
-    "name": "amjad/vueforge-plugin",
+    "name": "amjadiqbal/vueforge-plugin",
     "type": "october-plugin",
     "description": "The rapid Vue 3 component & widget engine for October CMS backend interfaces.",
     "keywords": ["october cms", "vue", "vue3", "form widget", "backend"],
@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Amjad\\VueForge\\": ""
+            "AmjadIqbal\\VueForge\\": ""
         }
     },
     "extra": {
