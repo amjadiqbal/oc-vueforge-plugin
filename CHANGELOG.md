@@ -4,6 +4,30 @@ All notable changes to this project are documented in this file. The format
 is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 this project uses [Semantic Versioning](https://semver.org/).
 
+## [0.1.9] - 2026-09-22
+
+### Added
+
+- `.gitattributes` (`export-ignore` on `/tests`, `/.github`, `/art`, and the dotfiles themselves) -
+  a `composer require` no longer pulls tests/CI/art into a consumer's `vendor/`.
+- `.editorconfig`.
+- `.github/dependabot.yml` - weekly updates for composer, npm, and github-actions.
+- `art/banner-light.png`, `art/banner-dark.png` (1200x300), `art/icon.png` (512x512),
+  `art/social-preview.png` (1280x640) - rasterized from the existing source SVGs, for the README's
+  dark-mode banner and GitHub's social-preview card (the PNG is committed here; the actual
+  Settings -> Social preview upload is a manual step, since there's no API for it).
+
+### Changed
+
+- `LICENSE` renamed to `LICENSE.md`, per this portfolio's file-naming standard
+  (`../GITHUB-REPO-STANDARD.md`) - content unchanged.
+- `README.md` brought up to that same standard: `<picture>` dark/light banner header, a real
+  screenshot placed directly under the badges, the Packagist version badge in place of a
+  hand-maintained `version-0.1.x` badge (now tracks itself), and the approved Support / "Need this
+  customised" / "More packages" footer. The footer's Discord line is left as an explicit "invite
+  coming soon" placeholder, not a fabricated or dead link - no Discord server exists yet for this
+  account.
+
 ## [0.1.8] - 2026-09-22
 
 ### Changed

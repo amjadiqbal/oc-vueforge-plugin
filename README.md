@@ -1,16 +1,22 @@
 <p align="center">
-  <img src="art/banner.svg" alt="VueForge - the rapid Vue 3 component & widget engine for October CMS" width="100%">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="art/banner-dark.png">
+    <img alt="VueForge — the rapid Vue 3 component &amp; widget engine for October CMS" src="art/banner-light.png" width="100%">
+  </picture>
 </p>
 
-<h1 align="center"><img src="art/icon.svg" width="28" height="28" valign="middle" alt=""> VueForge for October CMS</h1>
-
-<p align="center">
-  <a href="https://github.com/amjadiqbal/oc-vueforge-plugin/actions/workflows/tests.yml"><img src="https://github.com/amjadiqbal/oc-vueforge-plugin/actions/workflows/tests.yml/badge.svg" alt="Tests"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-0.1.8-informational.svg" alt="Version 0.1.8"></a>
-</p>
+# VueForge for October CMS
 
 The rapid Vue 3 component & widget engine for October CMS backend interfaces.
+
+[![Latest Version](https://img.shields.io/packagist/v/amjadiqbal/vueforge-plugin.svg?style=flat-square)](https://packagist.org/packages/amjadiqbal/vueforge-plugin)
+[![Tests](https://github.com/amjadiqbal/oc-vueforge-plugin/actions/workflows/tests.yml/badge.svg)](https://github.com/amjadiqbal/oc-vueforge-plugin/actions/workflows/tests.yml)
+[![PHP Version](https://img.shields.io/packagist/php-v/amjadiqbal/vueforge-plugin?style=flat-square)](https://packagist.org/packages/amjadiqbal/vueforge-plugin)
+[![License](https://img.shields.io/packagist/l/amjadiqbal/vueforge-plugin.svg?style=flat-square)](LICENSE.md)
+
+<p align="center">
+  <img src="art/screenshot.png" alt="A VueForge TagInput widget, live in a real October CMS backend form" width="500">
+</p>
 
 VueForge lets you drop a real Vue 3 `.vue` single-file component (Composition
 API, `<script setup>`, TypeScript, compiled by Vite) into any October CMS
@@ -181,4 +187,27 @@ version.
 
 ## License
 
-MIT - see `LICENSE`.
+MIT - see `LICENSE.md`.
+
+## Support
+
+- 🐛 **Bug or feature request** — [open an issue](https://github.com/amjadiqbal/oc-vueforge-plugin/issues)
+- 💬 **Questions & community** — join the Discord (invite coming soon)
+- 🔒 **Security issue** — please report privately via GitHub's security tab
+
+## Need this customised, or something built?
+
+I'm available for custom development, package integration, and technical consulting.
+
+[![Hire me on Upwork](https://img.shields.io/badge/Hire%20me-Upwork-6FDA44?style=flat-square&logo=upwork&logoColor=white)](https://www.upwork.com/freelancers/amjadkhatri)
+
+## More packages
+
+Part of a family of open-source packages — see [all of them](https://github.com/amjadiqbal?tab=repositories).
+
+| | |
+|---|---|
+| [oc-blockcraft-plugin](https://github.com/amjadiqbal/oc-blockcraft-plugin) | The modern TipTap block editor & document builder for October CMS |
+| [laravel-tiptap](https://github.com/amjadiqbal/laravel-tiptap) | Tiptap editor for Laravel, backend-driven config and secure uploads |
+| [kiln](https://github.com/amjadiqbal/kiln) | Deploy-time OPcache control for Laravel |
+| [laravel-logpulse](https://github.com/amjadiqbal/laravel-logpulse) | Log health monitoring & intelligent alerting for Laravel |

@@ -7,3 +7,4 @@
 0.1.6: Renamed the plugin namespace from AmjadIqbal to Amjad to match the registered October CMS Marketplace author code (composer package amjad/vueforge-plugin, installs at plugins/amjad/vueforge).
 0.1.7: Decided to skip Packagist.org publication under the amjad vendor (already claimed by an unrelated package); no code change, October Marketplace distribution unaffected.
 0.1.8: Reverted to the amjadiqbal identity across the board (namespace, plugin code, Composer package, install path), giving up October Marketplace eligibility under this account in exchange for a working, conflict-free Packagist/GitHub identity matching the rest of this author's packages.
+0.1.9: Brought the GitHub repo up to this portfolio's repo standard - .gitattributes, .editorconfig, dependabot, dark-mode README banner and footer; no functional code changes.
