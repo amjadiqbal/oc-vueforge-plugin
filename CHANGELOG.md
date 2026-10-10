@@ -18,6 +18,30 @@ an account-settings step only Amjad can do, unrelated to the commit content or t
 existing clone of this repo predating 2026-09-22 is now diverged and should be re-cloned, not
 pulled.**
 
+## [0.1.10] - 2026-10-10
+
+### Fixed
+
+- **Every Composer or Marketplace install of 0.1.1 - 0.1.9 failed as soon as a
+  `vueforge` field rendered**, with `VueForge: Vite manifest not found at
+  ".../assets/dist/.vite/manifest.json"`. The compiled bundle (`assets/dist/`)
+  was gitignored, so it was never part of the GitHub/Packagist package, and
+  Composer installs run no build step. It went unnoticed because every test
+  environment had a locally built copy, and the PHPUnit job installed the
+  plugin with `assets/dist` excluded and never rendered the widget.
+
+  - `assets/dist/` is now committed and ships with the package. No build step.
+  - The manifest moved from `assets/dist/.vite/manifest.json` to
+    `assets/dist/manifest.json`. Hidden folders are often dropped when a
+    plugin is uploaded to shared hosting over FTP or as a zip.
+  - New PHPUnit test renders the widget and asserts every JS/CSS file it
+    registers, and every file in the manifest, exists on disk.
+  - CI now installs the plugin from `git archive` - exactly what Packagist
+    ships - instead of the working copy, and fails if the committed
+    `assets/dist/` differs from a fresh build.
+
+  If you're on 0.1.1 - 0.1.9: `composer update amjadiqbal/vueforge-plugin`.
+
 ## [0.1.9] - 2026-09-22
 
 ### Added

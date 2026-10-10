@@ -1,0 +1,54 @@
+{
+  "__plugin-vue_export-helper-BDEZ0YoF.js": {
+    "file": "assets/_plugin-vue_export-helper-BDEZ0YoF.js",
+    "name": "_plugin-vue_export-helper",
+    "imports": [
+      "_runtime-dom.esm-bundler-CMM_Ylj_.js"
+    ]
+  },
+  "_runtime-dom.esm-bundler-CMM_Ylj_.js": {
+    "file": "assets/runtime-dom.esm-bundler-CMM_Ylj_.js",
+    "name": "runtime-dom.esm-bundler"
+  },
+  "assets/js/vueforge.ts": {
+    "file": "assets/vueforge-Cs4kmihz.js",
+    "name": "vueforge",
+    "src": "assets/js/vueforge.ts",
+    "isEntry": true,
+    "imports": [
+      "_runtime-dom.esm-bundler-CMM_Ylj_.js"
+    ],
+    "dynamicImports": [
+      "assets/vue/components/TagInput.vue",
+      "assets/vue/components/JsonEditor.vue"
+    ]
+  },
+  "assets/vue/components/JsonEditor.vue": {
+    "file": "assets/JsonEditor-C9_kKkVQ.js",
+    "name": "JsonEditor",
+    "src": "assets/vue/components/JsonEditor.vue",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_runtime-dom.esm-bundler-CMM_Ylj_.js",
+      "__plugin-vue_export-helper-BDEZ0YoF.js"
+    ],
+    "css": [
+      "assets/JsonEditor-CaPp-5oY.css"
+    ]
+  },
+  "assets/vue/components/TagInput.vue": {
+    "file": "assets/TagInput-BNGvSGlx.js",
+    "name": "TagInput",
+    "src": "assets/vue/components/TagInput.vue",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_runtime-dom.esm-bundler-CMM_Ylj_.js",
+      "__plugin-vue_export-helper-BDEZ0YoF.js"
+    ],
+    "css": [
+      "assets/TagInput-DFBLzJbW.css"
+    ]
+  }
+}

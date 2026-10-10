@@ -1,6 +1,6 @@
 {
   "name": "@amjadiqbal/vueforge",
-  "version": "0.1.0",
+  "version": "0.1.10",
   "description": "Vue 3 component & widget engine for October CMS backend interfaces.",
   "type": "module",
   "private": true,

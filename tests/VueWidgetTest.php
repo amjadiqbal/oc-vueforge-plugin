@@ -209,4 +209,38 @@ class VueWidgetTest extends PluginTestCase
 
         $this->assertSame(['existing' => 'value'], $result);
     }
+
+    /**
+     * Renders the widget the way a real backend form does and checks every
+     * JS/CSS file it registers exists on disk, plus every file the Vite
+     * manifest lists (the example components are loaded lazily). 0.1.1-0.1.9
+     * shipped without assets/dist, so this threw "Vite manifest not found" on
+     * every customer install while every other test passed.
+     */
+    public function testRenderRegistersBuiltAssetsThatExistOnDisk()
+    {
+        $widget = $this->makeWidget(['component' => 'TagInput']);
+
+        $html = $widget->render();
+
+        $this->assertStringContainsString('data-vueforge-widget="TagInput"', $html);
+
+        $assets = $widget->getAssetPaths();
+        $this->assertNotEmpty($assets['js'] ?? [], 'render() registered no JavaScript');
+
+        foreach (array_merge($assets['js'], $assets['css'] ?? []) as $url) {
+            $relative = strtok(preg_replace('#^/plugins/#', '', $url), '?');
+            $this->assertFileExists(plugins_path($relative), "Asset registered by render() is missing: {$url}");
+        }
+
+        $dist = plugins_path('amjadiqbal/vueforge/assets/dist/');
+        $manifest = json_decode(file_get_contents($dist . 'manifest.json'), true);
+        $this->assertNotEmpty($manifest);
+
+        foreach ($manifest as $chunk) {
+            foreach (array_merge([$chunk['file']], $chunk['css'] ?? []) as $file) {
+                $this->assertFileExists($dist . $file, "Manifest lists a file that is not shipped: {$file}");
+            }
+        }
+    }
 }

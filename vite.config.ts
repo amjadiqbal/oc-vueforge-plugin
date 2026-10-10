@@ -9,7 +9,9 @@ export default defineConfig({
     plugins: [vue()],
     base: '/plugins/amjadiqbal/vueforge/assets/dist/',
     build: {
-        manifest: true,
+        // Not Vite's default `.vite/manifest.json`: shared-hosting installs
+        // uploaded over FTP or via zip often silently drop hidden folders.
+        manifest: 'manifest.json',
         outDir: 'assets/dist',
         emptyOutDir: true,
         rollupOptions: {
