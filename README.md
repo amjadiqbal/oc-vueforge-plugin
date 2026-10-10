@@ -55,9 +55,10 @@ differ and when to use which.
        component: JsonEditor
    ```
 
-   The field's underlying model attribute should be a JSON-castable column
-   (`protected $jsonable = ['tags', 'metadata'];` on the model, or a native
-   JSON column).
+   Works on any model attribute: a JSON-castable column
+   (`protected $jsonable = ['tags', 'metadata'];` or a native JSON column), or
+   a plain text column such as a Tailor blueprint field, where the value is
+   stored as a JSON string and decoded when the form loads.
 
 That's it - `TagInput` (array state) and `JsonEditor` (nested key/value
 object state) ship as working examples in

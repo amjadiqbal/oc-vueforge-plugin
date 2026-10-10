@@ -103,6 +103,73 @@ class VueWidgetTest extends PluginTestCase
         $this->assertSame([], json_decode(htmlspecialchars_decode($widget->vars['value'], ENT_QUOTES), true));
     }
 
+    /**
+     * A model attribute with no $jsonable/array cast - every Tailor blueprint
+     * field, for one - loads as the raw JSON string. Up to 0.1.10 that string
+     * reached the component as-is, TagInput ignored it (not an array) and
+     * rendered empty, and the next save overwrote the stored value with [].
+     */
+    public function testPrepareVarsDecodesJsonStringLoadValue()
+    {
+        $model = new VueWidgetFixtureModel;
+        $model->payload = '["alpha","beta-vf"]';
+
+        $widget = $this->makeWidget(['component' => 'TagInput', 'valueFrom' => 'payload'], $model);
+
+        $widget->prepareVars();
+
+        $props = json_decode(htmlspecialchars_decode($widget->vars['props'], ENT_QUOTES), true);
+
+        $this->assertSame(['alpha', 'beta-vf'], $props['modelValue']);
+        $this->assertSame(['alpha', 'beta-vf'], json_decode(htmlspecialchars_decode($widget->vars['value'], ENT_QUOTES), true));
+    }
+
+    public function testPrepareVarsDecodesJsonStringObjectLoadValue()
+    {
+        $model = new VueWidgetFixtureModel;
+        $model->payload = '{"a":1,"nested":{"b":"two"}}';
+
+        $widget = $this->makeWidget(['component' => 'JsonEditor', 'valueFrom' => 'payload'], $model);
+
+        $widget->prepareVars();
+
+        $props = json_decode(htmlspecialchars_decode($widget->vars['props'], ENT_QUOTES), true);
+
+        $this->assertSame(['a' => 1, 'nested' => ['b' => 'two']], $props['modelValue']);
+    }
+
+    /**
+     * Load a string-stored value, post back exactly what the hidden input was
+     * seeded with (i.e. the user saves without touching the field), and check
+     * the stored value survives unchanged.
+     */
+    public function testJsonStringLoadValueSurvivesAnUnchangedSave()
+    {
+        $model = new VueWidgetFixtureModel;
+        $model->payload = '["alpha","beta-vf"]';
+
+        $widget = $this->makeWidget(['component' => 'TagInput', 'valueFrom' => 'payload'], $model);
+
+        $widget->prepareVars();
+        $posted = htmlspecialchars_decode($widget->vars['value'], ENT_QUOTES);
+
+        $this->assertSame(['alpha', 'beta-vf'], $widget->getSaveValue($posted));
+    }
+
+    public function testPrepareVarsLeavesNonJsonStringLoadValueUntouched()
+    {
+        $model = new VueWidgetFixtureModel;
+        $model->payload = 'not json';
+
+        $widget = $this->makeWidget(['component' => 'TagInput', 'valueFrom' => 'payload'], $model);
+
+        $widget->prepareVars();
+
+        $props = json_decode(htmlspecialchars_decode($widget->vars['props'], ENT_QUOTES), true);
+
+        $this->assertSame('not json', $props['modelValue']);
+    }
+
     public function testPrepareVarsEscapesValuesUnsafeForAnHtmlAttribute()
     {
         $model = new VueWidgetFixtureModel;

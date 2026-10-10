@@ -18,6 +18,22 @@ an account-settings step only Amjad can do, unrelated to the commit content or t
 existing clone of this repo predating 2026-09-22 is now diverged and should be re-cloned, not
 pulled.**
 
+## [0.1.11] - 2026-10-10
+
+### Fixed
+
+- **Saved data was erased on fields without a JSON cast**, including every
+  Tailor blueprint field. Such an attribute loads as the raw JSON string
+  (`'["alpha","beta"]'`); the widget passed that string to the component,
+  which expects an array, so the field rendered empty - and the next save,
+  even without touching the field, overwrote the stored value with `[]`.
+  The widget now decodes a JSON array/object string on load (and sanitizes
+  it like a posted value). Non-JSON strings are passed through unchanged.
+  Found during the 0.1.10 browser round-trip on a Tailor blueprint.
+
+  If you use VueForge on a field without `$jsonable`, check whether any
+  stored values were already reset to `[]` by a save on 0.1.10 or earlier.
+
 ## [0.1.10] - 2026-10-10
 
 ### Fixed
