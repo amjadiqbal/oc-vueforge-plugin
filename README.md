@@ -30,19 +30,14 @@ differ and when to use which.
 
 - October CMS 4.2+ (built and tested against 4.4.5, `october/rain` ^4.4)
 - PHP 8.2+
-- Node 18+ / npm, for building the frontend assets (Vite 5/6, Vue 3.4+, TypeScript)
+- Node 18+ / npm, only if you build your own Vue components (Vite 5/6, Vue 3.4+, TypeScript) - the plugin itself ships pre-built
 
 ## Quickstart
 
 1. Install the plugin into `plugins/amjadiqbal/vueforge` (see the Installation
    section below).
-2. Build its frontend assets once:
-
-   ```bash
-   cd plugins/amjadiqbal/vueforge
-   npm install
-   npm run build
-   ```
+2. Nothing to build - the compiled assets ship in `assets/dist/`. (You only
+   need `npm install && npm run build` after adding your own Vue components.)
 
 3. Use the `vueforge` widget type in any `fields.yaml`:
 
@@ -60,9 +55,10 @@ differ and when to use which.
        component: JsonEditor
    ```
 
-   The field's underlying model attribute should be a JSON-castable column
-   (`protected $jsonable = ['tags', 'metadata'];` on the model, or a native
-   JSON column).
+   Works on any model attribute: a JSON-castable column
+   (`protected $jsonable = ['tags', 'metadata'];` or a native JSON column), or
+   a plain text column such as a Tailor blueprint field, where the value is
+   stored as a JSON string and decoded when the form loads.
 
 That's it - `TagInput` (array state) and `JsonEditor` (nested key/value
 object state) ship as working examples in
@@ -152,12 +148,14 @@ reasoning and the history of this decision.
 composer require amjadiqbal/vueforge-plugin
 ```
 
-**Manual install** (works today):
+**Manual install**:
 
 1. Clone this repository directly into your October CMS application's
    `plugins/amjadiqbal/vueforge` directory (i.e. this repo's root becomes
    that directory - do not nest it any further).
-2. `cd plugins/amjadiqbal/vueforge && npm install && npm run build`.
+2. No build step is needed - the compiled assets ship in `assets/dist/`. If
+   you upload the plugin by FTP or zip instead, make sure that folder comes
+   with it.
 3. `php artisan october:migrate` (no migrations ship with this plugin, but
    this refreshes the plugin registry so the widget/console command appear).
 
@@ -175,15 +173,20 @@ composer require amjadiqbal/vueforge-plugin
 - **Build**: `npm run build` (Vite production build; fails the whole `build`
   script if `vue-tsc --noEmit` reports errors first).
 
-## Why `assets/dist/` is not committed
+## Why `assets/dist/` is committed
 
-The built Vite output (`assets/dist/`, including `manifest.json`) is
-`.gitignore`d. `ViteResolver` requires a real build to resolve production
-assets, so **run `npm run build` after installing this plugin** - there is no
-built-in fallback. This mirrors how most modern Vite-based October plugins in
-the ecosystem ship (source in git, build as an install step), and avoids
-committing machine-generated, hashed filenames that differ per Node/Vite
-version.
+The built Vite output (`assets/dist/`, including `manifest.json`) is committed
+on purpose. Composer, Packagist and the October Marketplace install straight
+from the repository and run no build step, so a plugin that relies on
+`npm run build` fails on every customer install with "Vite manifest not
+found" (this is exactly what 0.1.1 - 0.1.9 did). The manifest sits at
+`assets/dist/manifest.json`, not Vite's default hidden `.vite/` folder, because
+FTP and zip uploads often drop hidden folders.
+
+If you change `assets/js` or `assets/vue`, run `npm run build` and commit the
+result: CI fails when the committed `assets/dist/` differs from a fresh build,
+and a PHPUnit test renders the widget and checks every asset it registers
+exists on disk.
 
 ## License
 

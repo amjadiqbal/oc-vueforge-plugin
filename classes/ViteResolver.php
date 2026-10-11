@@ -20,7 +20,7 @@ class ViteResolver
 
     protected string $buildDir = 'assets/dist';
 
-    protected string $manifestPath = 'assets/dist/.vite/manifest.json';
+    protected string $manifestPath = 'assets/dist/manifest.json';
 
     protected ?array $manifestCache = null;
 
@@ -70,7 +70,7 @@ class ViteResolver
 
         if (!$chunk) {
             throw new RuntimeException(sprintf(
-                'VueForge: entry "%s" was not found in the Vite manifest (%s). Run `npm run build` in the vueforge plugin directory.',
+                'VueForge: entry "%s" was not found in the Vite manifest (%s). The plugin ships its built assets - reinstall it (composer require amjadiqbal/vueforge-plugin).',
                 $entry,
                 $this->manifestPath
             ));
@@ -102,7 +102,7 @@ class ViteResolver
 
         if (!file_exists($path)) {
             throw new RuntimeException(sprintf(
-                'VueForge: Vite manifest not found at "%s". Run `npm run build` in the vueforge plugin directory.',
+                'VueForge: built assets not found at "%s". The plugin ships them pre-built - reinstall it (composer require amjadiqbal/vueforge-plugin), and if you uploaded it manually, make sure the assets/dist folder was included.',
                 $path
             ));
         }

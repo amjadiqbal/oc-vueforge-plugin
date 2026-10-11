@@ -103,6 +103,73 @@ class VueWidgetTest extends PluginTestCase
         $this->assertSame([], json_decode(htmlspecialchars_decode($widget->vars['value'], ENT_QUOTES), true));
     }
 
+    /**
+     * A model attribute with no $jsonable/array cast - every Tailor blueprint
+     * field, for one - loads as the raw JSON string. Up to 0.1.10 that string
+     * reached the component as-is, TagInput ignored it (not an array) and
+     * rendered empty, and the next save overwrote the stored value with [].
+     */
+    public function testPrepareVarsDecodesJsonStringLoadValue()
+    {
+        $model = new VueWidgetFixtureModel;
+        $model->payload = '["alpha","beta-vf"]';
+
+        $widget = $this->makeWidget(['component' => 'TagInput', 'valueFrom' => 'payload'], $model);
+
+        $widget->prepareVars();
+
+        $props = json_decode(htmlspecialchars_decode($widget->vars['props'], ENT_QUOTES), true);
+
+        $this->assertSame(['alpha', 'beta-vf'], $props['modelValue']);
+        $this->assertSame(['alpha', 'beta-vf'], json_decode(htmlspecialchars_decode($widget->vars['value'], ENT_QUOTES), true));
+    }
+
+    public function testPrepareVarsDecodesJsonStringObjectLoadValue()
+    {
+        $model = new VueWidgetFixtureModel;
+        $model->payload = '{"a":1,"nested":{"b":"two"}}';
+
+        $widget = $this->makeWidget(['component' => 'JsonEditor', 'valueFrom' => 'payload'], $model);
+
+        $widget->prepareVars();
+
+        $props = json_decode(htmlspecialchars_decode($widget->vars['props'], ENT_QUOTES), true);
+
+        $this->assertSame(['a' => 1, 'nested' => ['b' => 'two']], $props['modelValue']);
+    }
+
+    /**
+     * Load a string-stored value, post back exactly what the hidden input was
+     * seeded with (i.e. the user saves without touching the field), and check
+     * the stored value survives unchanged.
+     */
+    public function testJsonStringLoadValueSurvivesAnUnchangedSave()
+    {
+        $model = new VueWidgetFixtureModel;
+        $model->payload = '["alpha","beta-vf"]';
+
+        $widget = $this->makeWidget(['component' => 'TagInput', 'valueFrom' => 'payload'], $model);
+
+        $widget->prepareVars();
+        $posted = htmlspecialchars_decode($widget->vars['value'], ENT_QUOTES);
+
+        $this->assertSame(['alpha', 'beta-vf'], $widget->getSaveValue($posted));
+    }
+
+    public function testPrepareVarsLeavesNonJsonStringLoadValueUntouched()
+    {
+        $model = new VueWidgetFixtureModel;
+        $model->payload = 'not json';
+
+        $widget = $this->makeWidget(['component' => 'TagInput', 'valueFrom' => 'payload'], $model);
+
+        $widget->prepareVars();
+
+        $props = json_decode(htmlspecialchars_decode($widget->vars['props'], ENT_QUOTES), true);
+
+        $this->assertSame('not json', $props['modelValue']);
+    }
+
     public function testPrepareVarsEscapesValuesUnsafeForAnHtmlAttribute()
     {
         $model = new VueWidgetFixtureModel;
@@ -208,5 +275,39 @@ class VueWidgetTest extends PluginTestCase
         $result = $widget->getSaveValue('{"attempted":"override"}');
 
         $this->assertSame(['existing' => 'value'], $result);
+    }
+
+    /**
+     * Renders the widget the way a real backend form does and checks every
+     * JS/CSS file it registers exists on disk, plus every file the Vite
+     * manifest lists (the example components are loaded lazily). 0.1.1-0.1.9
+     * shipped without assets/dist, so this threw "Vite manifest not found" on
+     * every customer install while every other test passed.
+     */
+    public function testRenderRegistersBuiltAssetsThatExistOnDisk()
+    {
+        $widget = $this->makeWidget(['component' => 'TagInput']);
+
+        $html = $widget->render();
+
+        $this->assertStringContainsString('data-vueforge-widget="TagInput"', $html);
+
+        $assets = $widget->getAssetPaths();
+        $this->assertNotEmpty($assets['js'] ?? [], 'render() registered no JavaScript');
+
+        foreach (array_merge($assets['js'], $assets['css'] ?? []) as $url) {
+            $relative = strtok(preg_replace('#^/plugins/#', '', $url), '?');
+            $this->assertFileExists(plugins_path($relative), "Asset registered by render() is missing: {$url}");
+        }
+
+        $dist = plugins_path('amjadiqbal/vueforge/assets/dist/');
+        $manifest = json_decode(file_get_contents($dist . 'manifest.json'), true);
+        $this->assertNotEmpty($manifest);
+
+        foreach ($manifest as $chunk) {
+            foreach (array_merge([$chunk['file']], $chunk['css'] ?? []) as $file) {
+                $this->assertFileExists($dist . $file, "Manifest lists a file that is not shipped: {$file}");
+            }
+        }
     }
 }

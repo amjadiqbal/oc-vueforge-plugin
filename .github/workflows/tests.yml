@@ -23,6 +23,13 @@ jobs:
       - run: npm test
       - run: npm run build
 
+      # assets/dist is committed because installs have no build step. A stale
+      # or missing build would ship broken, so the committed copy must match.
+      - name: Committed assets/dist matches a fresh build
+        run: |
+          git status --porcelain -- assets/dist
+          test -z "$(git status --porcelain -- assets/dist)"
+
   phpunit:
     name: PHPUnit (against a real October CMS install)
     runs-on: ubuntu-latest
@@ -44,12 +51,15 @@ jobs:
       - name: Install a throwaway October CMS app
         run: composer create-project october/october octoberapp --no-interaction --prefer-dist
 
-      - name: Install this plugin into the throwaway app
+      # Install from `git archive`, not the checkout: it honours .gitattributes
+      # export-ignore, so this is exactly what Packagist ships to customers.
+      # Only tests/ (export-ignored) is copied in separately to run them.
+      - name: Install this plugin into the throwaway app, as shipped
         run: |
-          mkdir -p octoberapp/plugins/amjadiqbal
-          rsync -a --exclude=node_modules --exclude=assets/dist --exclude=.git \
-            oc-vueforge/ \
-            octoberapp/plugins/amjadiqbal/vueforge/
+          mkdir -p octoberapp/plugins/amjadiqbal/vueforge
+          git -C oc-vueforge archive HEAD | tar -x -C octoberapp/plugins/amjadiqbal/vueforge
+          test -f octoberapp/plugins/amjadiqbal/vueforge/assets/dist/manifest.json
+          cp -R oc-vueforge/tests octoberapp/plugins/amjadiqbal/vueforge/tests
 
       - name: Configure SQLite
         working-directory: octoberapp

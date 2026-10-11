@@ -84,7 +84,7 @@ class VueWidget extends FormWidgetBase
      */
     public function prepareVars()
     {
-        $value = $this->getLoadValue();
+        $value = $this->decodeJsonString($this->getLoadValue());
 
         if ($value === null || $value === '') {
             $value = $this->defaultValueFor($this->component);
@@ -168,6 +168,28 @@ class VueWidget extends FormWidgetBase
 
         // Objects, resources, closures, etc. are never valid payload content.
         return null;
+    }
+
+    /**
+     * decodeJsonString turns a load value stored as a JSON string into the
+     * array the component expects. An attribute with no $jsonable/array cast
+     * (every Tailor blueprint field, for one) loads as the raw string; passed
+     * through as-is, the component ignored it, rendered empty, and the next
+     * save overwrote the stored data with an empty value. Anything that isn't
+     * a JSON array/object string is returned unchanged.
+     *
+     * @param mixed $value
+     * @return mixed
+     */
+    protected function decodeJsonString($value)
+    {
+        if (!is_string($value) || trim($value) === '') {
+            return $value;
+        }
+
+        $decoded = json_decode($value, true);
+
+        return is_array($decoded) ? $this->sanitize($decoded) : $value;
     }
 
     /**
