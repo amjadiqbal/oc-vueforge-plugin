@@ -1,16 +1,24 @@
+# Version updates are off (Amjad's rule: no GitHub workflow runs; every failed
+# run emails him). Single-package bumps also kept breaking the Vite/Vitest peer
+# ranges, e.g. vite 8 against @vitejs/plugin-vue 5. A limit of 0 stops
+# version-update pull requests; security updates are unaffected. Dependency
+# updates are manual PRs, checked with scripts/ci-local.sh.
 version: 2
 updates:
   - package-ecosystem: "composer"
     directory: "/"
     schedule:
       interval: "weekly"
+    open-pull-requests-limit: 0
 
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"
+    open-pull-requests-limit: 0
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
+    open-pull-requests-limit: 0

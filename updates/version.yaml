@@ -10,3 +10,4 @@
 0.1.9: Brought the GitHub repo up to this portfolio's repo standard - .gitattributes, .editorconfig, dependabot, dark-mode README banner and footer; no functional code changes.
 0.1.10: Ship the compiled assets - 0.1.1 to 0.1.9 failed on every Composer/Marketplace install with "Vite manifest not found".
 0.1.11: Fix data loss on fields without a JSON cast (e.g. Tailor) - the saved value loaded empty and the next save erased it.
+0.1.12: Rebuilt the bundled assets with patched build tooling (Vite 6); no functional changes.
