@@ -18,6 +18,32 @@ an account-settings step only Amjad can do, unrelated to the commit content or t
 existing clone of this repo predating 2026-09-22 is now diverged and should be re-cloned, not
 pulled.**
 
+## [0.1.12] - 2026-10-12
+
+### Security
+
+- Build and test tooling moved to patched versions: Vite 5.4 to 6.4, Vitest 2.1
+  to 4.1, and source-map-js 1.2.1 to 1.2.2. This clears all 7 `npm audit`
+  advisories: 2 critical (tinypool, vitest), 2 high (vite, source-map-js) and
+  3 moderate (esbuild, @vitest/mocker, vite-node). They affected development
+  and build tooling only, not the plugin's runtime code, but the bundled
+  `assets/dist/` is rebuilt with the new toolchain. JS chunk names change; the
+  CSS is byte-identical. No functional changes.
+- `@vitejs/plugin-vue` stays on 5.2, whose peer range covers Vite 6. jsdom
+  stays on 25. Running this repo's test suite now needs Node 20+ (Vitest 4).
+  Building your own components still works on Node 18+.
+
+### Changed
+
+- CI is local: `scripts/ci-local.sh` runs the same two jobs as
+  `.github/workflows/tests.yml` (kept as the reference). The plugin is
+  installed from `git archive HEAD` into a fresh October CMS install, using
+  the Composer advisory-block workaround that `create-project` currently
+  needs. `/scripts` is export-ignored.
+- Dependabot version updates are off (`open-pull-requests-limit: 0`).
+  Single-package bumps (vite 8, vitest 5, jsdom 30) kept failing on peer
+  ranges and Node requirements. Security updates are unaffected.
+
 ## [0.1.11] - 2026-10-10
 
 ### Fixed

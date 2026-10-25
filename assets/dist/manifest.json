@@ -1,22 +1,22 @@
 {
-  "__plugin-vue_export-helper-BDEZ0YoF.js": {
-    "file": "assets/_plugin-vue_export-helper-BDEZ0YoF.js",
+  "__plugin-vue_export-helper-DZMTeOcH.js": {
+    "file": "assets/_plugin-vue_export-helper-DZMTeOcH.js",
     "name": "_plugin-vue_export-helper",
     "imports": [
-      "_runtime-dom.esm-bundler-CMM_Ylj_.js"
+      "_runtime-dom.esm-bundler-BzpWcuz5.js"
     ]
   },
-  "_runtime-dom.esm-bundler-CMM_Ylj_.js": {
-    "file": "assets/runtime-dom.esm-bundler-CMM_Ylj_.js",
+  "_runtime-dom.esm-bundler-BzpWcuz5.js": {
+    "file": "assets/runtime-dom.esm-bundler-BzpWcuz5.js",
     "name": "runtime-dom.esm-bundler"
   },
   "assets/js/vueforge.ts": {
-    "file": "assets/vueforge-Cs4kmihz.js",
+    "file": "assets/vueforge-Bkda2o4j.js",
     "name": "vueforge",
     "src": "assets/js/vueforge.ts",
     "isEntry": true,
     "imports": [
-      "_runtime-dom.esm-bundler-CMM_Ylj_.js"
+      "_runtime-dom.esm-bundler-BzpWcuz5.js"
     ],
     "dynamicImports": [
       "assets/vue/components/TagInput.vue",
@@ -24,28 +24,28 @@
     ]
   },
   "assets/vue/components/JsonEditor.vue": {
-    "file": "assets/JsonEditor-C9_kKkVQ.js",
+    "file": "assets/JsonEditor-DUtkpLtK.js",
     "name": "JsonEditor",
     "src": "assets/vue/components/JsonEditor.vue",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_runtime-dom.esm-bundler-CMM_Ylj_.js",
-      "__plugin-vue_export-helper-BDEZ0YoF.js"
+      "_runtime-dom.esm-bundler-BzpWcuz5.js",
+      "__plugin-vue_export-helper-DZMTeOcH.js"
     ],
     "css": [
       "assets/JsonEditor-CaPp-5oY.css"
     ]
   },
   "assets/vue/components/TagInput.vue": {
-    "file": "assets/TagInput-BNGvSGlx.js",
+    "file": "assets/TagInput-Df6uvYMz.js",
     "name": "TagInput",
     "src": "assets/vue/components/TagInput.vue",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_runtime-dom.esm-bundler-CMM_Ylj_.js",
-      "__plugin-vue_export-helper-BDEZ0YoF.js"
+      "_runtime-dom.esm-bundler-BzpWcuz5.js",
+      "__plugin-vue_export-helper-DZMTeOcH.js"
     ],
     "css": [
       "assets/TagInput-DFBLzJbW.css"

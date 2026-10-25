@@ -173,6 +173,32 @@ composer require amjadiqbal/vueforge-plugin
 - **Build**: `npm run build` (Vite production build; fails the whole `build`
   script if `vue-tsc --noEmit` reports errors first).
 
+Running this repo's own test suite needs Node 20+ (Vitest 4).
+
+### CI is local
+
+GitHub Actions workflows are not run for this repository. Before a pull
+request is merged, run `scripts/ci-local.sh` and paste its summary into the
+PR. It runs the same two jobs as `.github/workflows/tests.yml`, which is kept
+as the reference:
+
+1. **TypeScript & Vite build**: a fresh clone of `HEAD`, `npm ci`,
+   typecheck, Vitest and the build. It then fails if the committed
+   `assets/dist/` differs from the fresh build.
+2. **PHPUnit (against a real October CMS install)**: a fresh October CMS 4.x
+   install, the plugin installed from `git archive HEAD` (exactly what
+   Packagist ships), migrations, then the PHPUnit suite.
+
+It tests the last commit, so commit first.
+
+```
+scripts/ci-local.sh                                        # both jobs
+JOB=phpunit PHP=/usr/local/opt/php@8.4/bin/php scripts/ci-local.sh
+```
+
+Dependency updates are manual pull requests. Dependabot version updates are
+off, because single-package bumps kept breaking the Vite/Vitest peer ranges.
+
 ## Why `assets/dist/` is committed
 
 The built Vite output (`assets/dist/`, including `manifest.json`) is committed
